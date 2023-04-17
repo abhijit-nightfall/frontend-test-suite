@@ -5,6 +5,7 @@ import com.microsoft.playwright.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 public class PlaywrightFactory {
@@ -73,5 +74,13 @@ public class PlaywrightFactory {
             throw new RuntimeException(e);
         }
         return properties;
+    }
+
+    public static String takeScreenshot() {
+        String path = System.getProperty("user.dir") + "/screenshot" + System.currentTimeMillis() + ".png";
+        getPage().screenshot(new Page.ScreenshotOptions()
+                .setPath(Paths.get(path))
+                .setFullPage(true));
+        return path;
     }
 }
