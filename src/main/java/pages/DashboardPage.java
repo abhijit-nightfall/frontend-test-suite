@@ -11,6 +11,7 @@ public class DashboardPage {
         this.page = page;
     }
     public Boolean isViolationsGraphVisible() {
+        page.waitForSelector(violations_graph);
         return page.isVisible(violations_graph);
     }
 }
