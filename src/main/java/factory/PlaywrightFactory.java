@@ -18,7 +18,7 @@ public class PlaywrightFactory {
 
     public Page initBrowser(Properties properties) {
 
-        String browserName = properties.getProperty("browser");
+        String browserName = properties.getProperty("browser").trim();
         System.out.println("Browser Name is : " + browserName);
         playwright = Playwright.create();
 
@@ -41,7 +41,7 @@ public class PlaywrightFactory {
 
         browserContext = browser.newContext();
         page = browserContext.newPage();
-        page.navigate("https://app.nightfall.ai/");
+        page.navigate(properties.getProperty("url").trim());
 
         return page;
     }
