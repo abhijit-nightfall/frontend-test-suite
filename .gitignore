@@ -2,3 +2,5 @@
 *.png
 /.idea
 /target
+/build
+/screenshot
