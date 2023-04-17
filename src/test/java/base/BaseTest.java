@@ -4,6 +4,7 @@ import com.microsoft.playwright.Page;
 import factory.PlaywrightFactory;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import pages.DashboardPage;
 import pages.LoginPage;
 
 import java.util.Properties;
@@ -15,6 +16,7 @@ public class BaseTest {
     protected Properties properties;
 
     protected LoginPage loginPage;
+    protected DashboardPage dashboardPage;
 
     @BeforeTest
     public void setup() {
