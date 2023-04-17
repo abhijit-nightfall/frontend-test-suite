@@ -2,6 +2,11 @@ package factory;
 
 import com.microsoft.playwright.*;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
 public class PlaywrightFactory {
 
     Playwright playwright;
@@ -9,9 +14,12 @@ public class PlaywrightFactory {
     BrowserContext browserContext;
     Page page;
 
-    public Page initBrowser(String browserName) {
+    Properties properties;
 
-        System.out.println("Browser Name is : "+ browserName);
+    public Page initBrowser(Properties properties) {
+
+        String browserName = properties.getProperty("browser");
+        System.out.println("Browser Name is : " + browserName);
         playwright = Playwright.create();
 
         switch (browserName.toLowerCase()) {
@@ -36,5 +44,18 @@ public class PlaywrightFactory {
         page.navigate("https://app.nightfall.ai/");
 
         return page;
+    }
+
+    public Properties initProperty() {
+        try {
+            FileInputStream fileInputStream = new FileInputStream("./src/test/resources/config/config.properties");
+            properties = new Properties();
+            properties.load(fileInputStream);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return properties;
     }
 }

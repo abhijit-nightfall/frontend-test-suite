@@ -1,33 +1,13 @@
 package tests;
 
-import com.microsoft.playwright.Page;
-import factory.PlaywrightFactory;
+import base.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pages.LoginPage;
 
-public class LoginPageTest {
-
-    PlaywrightFactory playwrightFactory;
-    Page page;
-    LoginPage loginPage;
-
-    @BeforeTest
-    public void setup() {
-        playwrightFactory = new PlaywrightFactory();
-        page = playwrightFactory.initBrowser("chrome");
-        loginPage = new LoginPage(page);
-    }
+public class LoginPageTest extends BaseTest {
 
     @Test
     public void loginSuccessTest() {
-        Assert.assertTrue(loginPage.login("abhijit@nightfall.ai", "Automation@123"));
-    }
-
-    @AfterTest
-    public void tearDown() {
-        page.context().browser().close();
+        Assert.assertTrue(loginPage.login(properties.getProperty("username"), properties.getProperty("password")));
     }
 }
