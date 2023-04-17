@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Frontend Regression Suite" verbose="4">
+<suite name="Frontend Regression Suite" thread-count="2" parallel="tests" verbose="4">
 
     <test name="Login Test Cases">
+        <classes>
+            <class name="tests.LoginPageTest"/>
+        </classes>
+    </test>
+
+    <test name="Login2 Test Cases">
         <classes>
             <class name="tests.LoginPageTest"/>
         </classes>

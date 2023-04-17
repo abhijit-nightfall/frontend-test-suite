@@ -4,7 +4,7 @@ import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginPageTest extends BaseTest {
+public class LoginPageTest2 extends BaseTest {
 
     @Test
     public void loginSuccessTest() {
