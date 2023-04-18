@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Frontend Regression Suite" thread-count="2" parallel="tests" verbose="4">
+<suite name="Frontend Regression Suite" thread-count="8" parallel="tests" verbose="4">
 
     <listeners>
         <listener class-name="listeners.ExtentReportListener" />
     </listeners>
 
-    <test name="Login Test Cases - chromium">
+    <test name="Login Test Cases - chromium" thread-count="2" parallel="classes">
         <parameter name="browser" value="chromium"/>
         <classes>
             <class name="tests.LoginPageTest"/>
+            <class name="tests.DashboardPageTest"/>
         </classes>
     </test>
 
-    <test name="Login Test Cases - chrome">
+    <test name="Login Test Cases - chrome" thread-count="2" parallel="classes">
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="tests.LoginPageTest"/>
+            <class name="tests.DashboardPageTest"/>
         </classes>
     </test>
 
-    <test name="Login2 Test Cases - firefox">
+    <test name="Login2 Test Cases - firefox" thread-count="2" parallel="classes">
         <parameter name="browser" value="firefox"/>
         <classes>
             <class name="tests.LoginPageTest"/>
+            <class name="tests.DashboardPageTest"/>
         </classes>
     </test>
 
-    <test name="Login2 Test Cases - safari">
+    <test name="Login2 Test Cases - safari" thread-count="2" parallel="classes">
         <parameter name="browser" value="safari"/>
         <classes>
             <class name="tests.LoginPageTest"/>
+            <class name="tests.DashboardPageTest"/>
         </classes>
     </test>
 

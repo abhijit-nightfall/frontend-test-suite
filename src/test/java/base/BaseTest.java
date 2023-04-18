@@ -2,11 +2,12 @@ package base;
 
 import com.microsoft.playwright.Page;
 import factory.PlaywrightFactory;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import pages.DashboardPage;
 import pages.LoginPage;
+import pages.SlackPolicyPage;
 
 import java.util.Properties;
 
@@ -18,9 +19,10 @@ public class BaseTest {
 
     protected LoginPage loginPage;
     protected DashboardPage dashboardPage;
+    protected SlackPolicyPage slackPolicyPage;
 
     @Parameters({"browser"})
-    @BeforeTest
+    @BeforeClass
     public void setup(String browserName ) {
         playwrightFactory = new PlaywrightFactory();
         properties = playwrightFactory.initProperty();
@@ -32,7 +34,7 @@ public class BaseTest {
         loginPage = new LoginPage(page);
     }
 
-    @AfterTest
+    @AfterClass
     public void tearDown() {
         page.context().browser().close();
     }
