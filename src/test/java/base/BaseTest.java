@@ -4,6 +4,7 @@ import com.microsoft.playwright.Page;
 import factory.PlaywrightFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import pages.DashboardPage;
 import pages.LoginPage;
@@ -23,7 +24,7 @@ public class BaseTest {
 
     @Parameters({"browser"})
     @BeforeClass
-    public void setup(String browserName ) {
+    public void setup(@Optional("chrome")String browserName ) {
         playwrightFactory = new PlaywrightFactory();
         properties = playwrightFactory.initProperty();
 
@@ -36,6 +37,7 @@ public class BaseTest {
 
     @AfterClass
     public void tearDown() {
+        playwrightFactory.closeTracing();
         page.context().browser().close();
     }
 

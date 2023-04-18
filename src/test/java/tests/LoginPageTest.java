@@ -8,7 +8,7 @@ public class LoginPageTest extends BaseTest {
 
     @Test
     public void loginSuccessTest() {
-         dashboardPage = loginPage.login(properties.getProperty("username").trim(), properties.getProperty("password").trim());
+        dashboardPage = loginPage.login(properties.getProperty("username").trim(), properties.getProperty("password").trim());
         Assert.assertTrue(dashboardPage.isPageLoaded());
     }
 }

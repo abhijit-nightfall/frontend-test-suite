@@ -6,11 +6,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Date;
 import java.util.Properties;
 
 public class PlaywrightFactory {
 
     Properties properties;
+    BrowserContext browserContext;
 
     private static ThreadLocal<Playwright> tlPlaywright = new ThreadLocal<>();
     private static ThreadLocal<Browser> tlBrowser = new ThreadLocal<>();
@@ -55,8 +57,9 @@ public class PlaywrightFactory {
             default:
                 System.out.println("Please pass the right browser name : [chromium, chrome, firefox, safari]");
         }
-        
-        tlBrowserContext.set(getBrowser().newContext());
+        browserContext = getBrowser().newContext();
+        tlBrowserContext.set(browserContext);
+        browserContext.tracing().start(new Tracing.StartOptions().setScreenshots(true).setSnapshots(true));
         tlPage.set(getBrowserContext().newPage());
         getPage().navigate(properties.getProperty("url").trim());
 
@@ -82,5 +85,9 @@ public class PlaywrightFactory {
                 .setPath(Paths.get(path))
                 .setFullPage(true));
         return path;
+    }
+
+    public void closeTracing() {
+        browserContext.tracing().stop(new Tracing.StopOptions().setPath(Paths.get(System.getProperty("user.dir") + "/trace/" + System.currentTimeMillis() + ".zip")));
     }
 }
