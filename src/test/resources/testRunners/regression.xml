@@ -6,13 +6,15 @@
         <listener class-name="listeners.ExtentReportListener" />
     </listeners>
 
-    <test name="Login Test Cases">
+    <test name="Login Test Cases - chrome">
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="tests.LoginPageTest"/>
         </classes>
     </test>
 
-    <test name="Login2 Test Cases">
+    <test name="Login2 Test Cases - firefox">
+        <parameter name="browser" value="firefox"/>
         <classes>
             <class name="tests.LoginPageTest"/>
         </classes>
