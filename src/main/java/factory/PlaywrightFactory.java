@@ -6,7 +6,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.Date;
 import java.util.Properties;
 
 public class PlaywrightFactory {
@@ -80,14 +79,16 @@ public class PlaywrightFactory {
     }
 
     public static String takeScreenshot() {
-        String path = System.getProperty("user.dir") + "/screenshot/" + System.currentTimeMillis() + ".png";
+        long currentTimeInMillis = System.currentTimeMillis();
+        String path = System.getProperty("user.dir") + "/report/screenshot/" + currentTimeInMillis + ".png";
         getPage().screenshot(new Page.ScreenshotOptions()
                 .setPath(Paths.get(path))
                 .setFullPage(true));
-        return path;
+        String pathForExtentReport = "../screenshot/"+ currentTimeInMillis + ".png";
+        return pathForExtentReport;
     }
 
     public void closeTracing() {
-        browserContext.tracing().stop(new Tracing.StopOptions().setPath(Paths.get(System.getProperty("user.dir") + "/trace/" + System.currentTimeMillis() + ".zip")));
+        browserContext.tracing().stop(new Tracing.StopOptions().setPath(Paths.get(System.getProperty("user.dir") + "/report/trace/" + System.currentTimeMillis() + ".zip")));
     }
 }

@@ -2,6 +2,4 @@
 *.png
 /.idea
 /target
-/build
-/screenshot
-/trace
+/report
