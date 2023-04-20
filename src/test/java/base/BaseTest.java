@@ -22,14 +22,14 @@ public class BaseTest {
     protected DashboardPage dashboardPage;
     protected SlackPolicyPage slackPolicyPage;
 
-    @Parameters({"browser"})
+    @Parameters({"browser_name"})
     @BeforeClass
     public void setup(@Optional("chrome")String browserName ) {
         playwrightFactory = new PlaywrightFactory();
         properties = playwrightFactory.initProperty();
 
         if (browserName!=null) {
-            properties.setProperty("browser", browserName);
+            properties.setProperty("browser_name", browserName);
         }
         page = playwrightFactory.initBrowser(properties);
         loginPage = new LoginPage(page);

@@ -36,7 +36,7 @@ public class PlaywrightFactory {
 
     public Page initBrowser(Properties properties) {
 
-        String browserName = properties.getProperty("browser").trim();
+        String browserName = properties.getProperty("browser_name").trim();
         System.out.println("Browser Name is : " + browserName);
         tlPlaywright.set(Playwright.create());
 
@@ -60,7 +60,7 @@ public class PlaywrightFactory {
         tlBrowserContext.set(browserContext);
         browserContext.tracing().start(new Tracing.StartOptions().setScreenshots(true).setSnapshots(true));
         tlPage.set(getBrowserContext().newPage());
-        getPage().navigate(properties.getProperty("url").trim());
+        getPage().navigate(properties.getProperty("nightfall_base_url").trim());
 
         return getPage();
     }
